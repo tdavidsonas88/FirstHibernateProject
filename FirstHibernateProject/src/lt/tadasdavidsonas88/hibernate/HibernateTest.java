@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import lt.tadasdavidsonas88.dto.Address;
 import lt.tadasdavidsonas88.dto.UserDetails;
 
 public class HibernateTest {
@@ -14,14 +15,24 @@ public class HibernateTest {
 		UserDetails user1 = new UserDetails();
 //		user1.setUserId(1);
 		user1.setUserName("First User");
-		user1.setAddress("First User's address");
+		
+		Address addr1 = new Address();
+		addr1.setStreet("Street name 1");
+		addr1.setCity("Kaunas");
+		
+		user1.setAddress(addr1);
 		user1.setJoinedDate(new Date());
 		user1.setDescription("Description of the first user goes here");
 		
 		UserDetails user2 = new UserDetails();
 //		user2.setUserId(2);
 		user2.setUserName("Second User");
-		user2.setAddress("Second User's address");
+		
+		Address addr2 = new Address();
+		addr2.setStreet("Street name 2");
+		addr2.setCity("Vilnius");
+		
+		user2.setAddress(addr2);
 		user2.setJoinedDate(new Date());
 		user2.setDescription("Description of the second user goes here");
 		
@@ -35,8 +46,6 @@ public class HibernateTest {
 			session.save(user2);
 			session.getTransaction().commit();
 		
-		
-			session.flush();
 			session.close();
 			
 			user1 = null;
@@ -49,7 +58,6 @@ public class HibernateTest {
 			user2 = session.get(UserDetails.class, 2);
 			System.out.println("User2 name retrieved is: " + user2.getUserName());
 			
-			session.flush();
 			session.close();
 		
 		}catch(Exception e) {

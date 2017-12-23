@@ -3,6 +3,7 @@ package lt.tadasdavidsonas88.dto;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,14 +15,15 @@ import javax.persistence.Transient;
 @Entity(name = "USER_DETAILS")
 public class UserDetails {
 
-	@Id
-	@Column(name = "USER_ID") @GeneratedValue
+	@Id @GeneratedValue
+	@Column(name = "USER_ID")
 	private int userId;
 	@Column(name = "USER_NAME")
 	private String userName;
 	@Temporal(TemporalType.DATE)
 	private Date joinedDate;
-	private String address;
+	@Embedded
+	private Address address;
 	@Lob
 	private String description;
 	@Transient
@@ -51,11 +53,11 @@ public class UserDetails {
 		this.joinedDate = joinedDate;
 	}
 
-	public String getAddress() {
+	public Address getAddress() {
 		return address;
 	}
 
-	public void setAddress(String address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}
 
