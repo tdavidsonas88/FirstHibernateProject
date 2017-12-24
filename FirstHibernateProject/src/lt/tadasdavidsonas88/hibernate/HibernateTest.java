@@ -72,6 +72,7 @@ public class HibernateTest {
 			System.out.println("User2 name retrieved is: " + user2.getUserName());
 			
 			session.close();
+			System.out.println(user1.getListOfAddresses().size());
 		
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
