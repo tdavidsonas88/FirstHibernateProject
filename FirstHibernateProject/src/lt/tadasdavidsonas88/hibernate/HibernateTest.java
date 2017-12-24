@@ -19,8 +19,15 @@ public class HibernateTest {
 		Address addr1 = new Address();
 		addr1.setStreet("Street name 1");
 		addr1.setCity("Kaunas");
+		addr1.setState("First State");
+		addr1.setPincode("100001");
 		
-		user1.setAddress(addr1);
+		Address officeAddr1 = new Address();
+		officeAddr1.setState("Office street name 1");
+		officeAddr1.setCity("Klaipëda");
+		
+		user1.setHomeAddress(addr1);
+		user1.setOfficeAddress(officeAddr1);
 		user1.setJoinedDate(new Date());
 		user1.setDescription("Description of the first user goes here");
 		
@@ -31,10 +38,16 @@ public class HibernateTest {
 		Address addr2 = new Address();
 		addr2.setStreet("Street name 2");
 		addr2.setCity("Vilnius");
+		addr2.setState("Second State");
+		addr2.setPincode("200002");
 		
-		user2.setAddress(addr2);
+		
+		user2.setHomeAddress(addr2);
 		user2.setJoinedDate(new Date());
 		user2.setDescription("Description of the second user goes here");
+		
+		user1.getListOfAddresses().add(addr1);
+		user1.getListOfAddresses().add(addr2);
 		
 		try {
 		
