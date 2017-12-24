@@ -59,8 +59,8 @@ public class HibernateTest {
 		user1.getVehicle().add(vehicle);
 		user1.getVehicle().add(vehicle2);
 		
-		vehicle.setUser(user1);
-		vehicle2.setUser(user1);
+		vehicle.getUserList().add(user1);
+		vehicle2.getUserList().add(user1);
 		
 		
 		try {

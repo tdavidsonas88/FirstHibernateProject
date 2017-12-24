@@ -1,8 +1,12 @@
 package lt.tadasdavidsonas88.dto;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -12,14 +16,14 @@ public class Vehicle {
 	@GeneratedValue
 	private int vehicleId;
 	private String vehicleName;
-	@ManyToOne
-	private UserDetails user;
+	@ManyToMany(mappedBy="vehicle")
+	private Collection<UserDetails> userList = new ArrayList();
 	
-	public UserDetails getUser() {
-		return user;
+	public Collection<UserDetails> getUserList() {
+		return userList;
 	}
-	public void setUser(UserDetails user) {
-		this.user = user;
+	public void setUserList(Collection<UserDetails> userList) {
+		this.userList = userList;
 	}
 	public int getVehicleId() {
 		return vehicleId;
