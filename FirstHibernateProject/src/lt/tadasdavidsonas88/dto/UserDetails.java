@@ -18,6 +18,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -37,12 +38,9 @@ public class UserDetails {
 	private int userId;
 	@Column(name = "USER_NAME")
 	private String userName;
-	@ElementCollection(fetch=FetchType.EAGER)
-	@JoinTable(name="USER_ADDRESS",
-			joinColumns=@JoinColumn(name="USER_ID")
-			)
-	private Collection<Address> listOfAddresses = new ArrayList<Address>();  // ArrayList supports indexes
-
+	@ElementCollection(fetch = FetchType.EAGER)
+	@JoinTable(name = "USER_ADDRESS", joinColumns = @JoinColumn(name = "USER_ID"))
+	private Collection<Address> listOfAddresses = new ArrayList<Address>(); // ArrayList supports indexes
 
 	@Temporal(TemporalType.DATE)
 	private Date joinedDate;
@@ -58,6 +56,17 @@ public class UserDetails {
 	private String description;
 	@Transient
 	private String ignoredProperty;
+	@OneToOne
+	@JoinColumn(name="VEHICLE_ID")
+	private Vehicle vehicle;
+
+	public Vehicle getVehicle() {
+		return vehicle;
+	}
+
+	public void setVehicle(Vehicle vehicle) {
+		this.vehicle = vehicle;
+	}
 
 	public int getUserId() {
 		return userId;
@@ -122,6 +131,5 @@ public class UserDetails {
 	public Collection<Address> getListOfAddresses() {
 		return listOfAddresses;
 	}
-	
-	
+
 }

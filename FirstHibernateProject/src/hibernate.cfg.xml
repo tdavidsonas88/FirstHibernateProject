@@ -22,6 +22,7 @@
         <property name="show_sql">true</property>
     	
     	<mapping class="lt.tadasdavidsonas88.dto.UserDetails"></mapping>
+    	<mapping class="lt.tadasdavidsonas88.dto.Vehicle"></mapping>
     	
     </session-factory>
 </hibernate-configuration>

@@ -8,6 +8,7 @@ import org.hibernate.cfg.Configuration;
 
 import lt.tadasdavidsonas88.dto.Address;
 import lt.tadasdavidsonas88.dto.UserDetails;
+import lt.tadasdavidsonas88.dto.Vehicle;
 
 public class HibernateTest {
 
@@ -49,6 +50,12 @@ public class HibernateTest {
 		user1.getListOfAddresses().add(addr1);
 		user1.getListOfAddresses().add(addr2);
 		
+		Vehicle vehicle = new Vehicle();
+		vehicle.setVehicleName("Car");
+		
+		user1.setVehicle(vehicle);
+		
+		
 		try {
 		
 			SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
@@ -56,6 +63,7 @@ public class HibernateTest {
 			Session session = sessionFactory.openSession();
 			session.beginTransaction();
 			session.save(user1);
+			session.save(vehicle);
 			session.save(user2);
 			session.getTransaction().commit();
 		
