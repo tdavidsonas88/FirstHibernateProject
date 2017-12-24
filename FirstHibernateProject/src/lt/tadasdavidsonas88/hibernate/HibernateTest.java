@@ -48,12 +48,19 @@ public class HibernateTest {
 		user2.setDescription("Description of the second user goes here");
 		
 		user1.getListOfAddresses().add(addr1);
-		user1.getListOfAddresses().add(addr2);
+		user2.getListOfAddresses().add(addr2);
 		
 		Vehicle vehicle = new Vehicle();
 		vehicle.setVehicleName("Car");
 		
-		user1.setVehicle(vehicle);
+		Vehicle vehicle2 = new Vehicle();
+		vehicle2.setVehicleName("Bus");
+		
+		user1.getVehicle().add(vehicle);
+		user1.getVehicle().add(vehicle2);
+		
+		vehicle.setUser(user1);
+		vehicle2.setUser(user1);
 		
 		
 		try {
@@ -63,8 +70,9 @@ public class HibernateTest {
 			Session session = sessionFactory.openSession();
 			session.beginTransaction();
 			session.save(user1);
-			session.save(vehicle);
 			session.save(user2);
+			session.save(vehicle);
+			session.save(vehicle2);
 			session.getTransaction().commit();
 		
 			session.close();
