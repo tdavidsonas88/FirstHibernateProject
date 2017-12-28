@@ -7,6 +7,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import lt.tadasdavidsonas88.dto.Address;
+import lt.tadasdavidsonas88.dto.FourWheeler;
+import lt.tadasdavidsonas88.dto.TwoWheeler;
 import lt.tadasdavidsonas88.dto.UserDetails;
 import lt.tadasdavidsonas88.dto.Vehicle;
 
@@ -40,8 +42,7 @@ public class HibernateTest {
 		addr2.setStreet("Street name 2");
 		addr2.setCity("Vilnius");
 		addr2.setState("Second State");
-		addr2.setPincode("200002");
-		
+		addr2.setPincode("200002");		
 		
 		user2.setHomeAddress(addr2);
 		user2.setJoinedDate(new Date());
@@ -59,6 +60,14 @@ public class HibernateTest {
 		user1.getVehicle().add(vehicle);
 		user1.getVehicle().add(vehicle2);
 		
+		TwoWheeler bike = new TwoWheeler();
+		bike.setVehicleName("Bike");
+		bike.setSteeringHandle("Bike steering handle");
+		
+		FourWheeler car = new FourWheeler();
+		car.setVehicleName("Porsche");
+		car.setSteeringWheel("Porsche steering wheel");
+		
 		try {
 		
 			SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
@@ -67,6 +76,11 @@ public class HibernateTest {
 			session.beginTransaction();
 			session.persist(user1);
 			session.persist(user2);
+			
+			session.save(vehicle);
+			session.save(bike);
+			session.save(car);
+			
 //			session.save(vehicle);
 //			session.save(vehicle2);
 			session.getTransaction().commit();

@@ -23,6 +23,8 @@
     	
     	<mapping class="lt.tadasdavidsonas88.dto.UserDetails"></mapping>
     	<mapping class="lt.tadasdavidsonas88.dto.Vehicle"></mapping>
+    	<mapping class="lt.tadasdavidsonas88.dto.TwoWheeler"></mapping>
+    	<mapping class="lt.tadasdavidsonas88.dto.FourWheeler"></mapping>
     	
     </session-factory>
 </hibernate-configuration>
