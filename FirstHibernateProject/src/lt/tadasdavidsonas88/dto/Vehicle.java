@@ -13,7 +13,10 @@ import javax.persistence.InheritanceType;
 //		discriminatorType=DiscriminatorType.STRING
 //)
 @Entity
-@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+//@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy=InheritanceType.JOINED) // creates table per class which has only the specific
+											  // properties for that class; All the inherited values
+												// will remain in the parent class
 public class Vehicle {
 
 	@Id
